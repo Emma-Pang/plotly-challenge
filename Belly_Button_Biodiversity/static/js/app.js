@@ -1,11 +1,15 @@
-const url = "samples.json";
+// const url = "samples.json";
 
+// d3.json(url).then(function(data) {
+//   console.log(data)
+  
+// });
 
 
 
 
 function buildMetadata(sample) {
-  
+  const url = "samples.json";
   // @TODO: Complete the following function that builds the metadata panel
 
   // Use `d3.json` to fetch the metadata for a sample
@@ -14,10 +18,17 @@ function buildMetadata(sample) {
     var sampleMetadata = d3.select("sample-metadata");
       
     
-    // Use `.html("") to clear any existing metadata
+    // // Use `.html("") to clear any existing metadata
     sampleMetadata.html("");
 
-    // Use `Object.entries` to add each key and value pair to the panel
+    // // Use `Object.entries` to add each key and value pair to the panel
+    // // Object.entries(data).forEach(([key, value]) => {
+    // //   sampleMetadata.append("h5").text(`${key}:${value}`);
+
+    Object.entries(data).forEach(([key, value]) => {
+      var row = sampleMetadata.append("h5");
+      row.text(`${key}:${value}`);
+    });
 
     
     // Hint: Inside the loop, you will need to use d3 to append new
@@ -39,31 +50,33 @@ function buildMetadata(sample) {
 //     // otu_ids, and labels (10 each).
 // }
 
-// function init() {
-//   // Grab a reference to the dropdown select element
-//   var selector = d3.select("#selDataset");
+function init() {
+  const url = "samples.json";
 
-//   // Use the list of sample names to populate the select options
-//   d3.json("/names").then((sampleNames) => {
-//     sampleNames.forEach((sample) => {
-//       selector
-//         .append("option")
-//         .text(sample)
-//         .property("value", sample);
-//     });
+  // Grab a reference to the dropdown select element
+  var selector = d3.select("#selDataset");
 
-//     // Use the first sample from the list to build the initial plots
-//     const firstSample = sampleNames[0];
-//     buildCharts(firstSample);
-//     buildMetadata(firstSample);
-//   });
-// }
+  // Use the list of sample names to populate the select options
+  d3.json(url).then((sampleNames) => {
+    sampleNames.forEach((sample) => {
+      selector
+        .append("option")
+        .text(sample)
+        .property("value", sample);
+    });
 
-// function optionChanged(newSample) {
-//   // Fetch new data each time a new sample is selected
-//   buildCharts(newSample);
-//   buildMetadata(newSample);
-// }
+    // Use the first sample from the list to build the initial plots
+    const firstSample = sampleNames[0];
+    buildCharts(firstSample);
+    buildMetadata(firstSample);
+  });
+}
 
-// // Initialize the dashboard
-// init();
+function optionChanged(newSample) {
+  // Fetch new data each time a new sample is selected
+  buildCharts(newSample);
+  buildMetadata(newSample);
+}
+
+// Initialize the dashboard
+init();
