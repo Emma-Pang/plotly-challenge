@@ -46,11 +46,21 @@ function buildCharts(sample) {
   // @TODO: Use `d3.json` to fetch the sample data for the plots
   d3.json(url).then(function(data) {
 
-    var idsamplevalues = data.samples.filter(xvalSample => xvalSample.id == sample);
+    var idsamplevalues = data.samples.filter(xvalSample => xvalSample.id == sample)[0];
     console.log(idsamplevalues);
-    // @TODO: Build horizontal bar chart
+    
+    //save all labels as variables
+    var otu_ids = idsamplevalues.otu_ids;
+    var sample_values = idsamplevalues.sample_values;
+    var otu_labels = idsamplevalues.otu_labels;
+    
+
+console.log(otu_labels)
+    // @TODO: Build horizontal bar chart with frequency of each label
 
     // @TODO: Build a Bubble Chart using the sample data
+
+    // pie chart/guage chart
     
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
