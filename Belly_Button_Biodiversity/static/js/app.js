@@ -54,9 +54,17 @@ function buildCharts(sample) {
     var sample_values = idsamplevalues.sample_values;
     var otu_labels = idsamplevalues.otu_labels;
     
+    // console.log(otu_labels)
 
-console.log(otu_labels)
     // @TODO: Build horizontal bar chart with frequency of each label
+    var trace = [{
+      type: 'bar',
+      x: sample_values,
+      y: otu_ids,
+      orientation: 'h'
+    }];
+    
+    Plotly.newPlot('bar', trace);
 
     // @TODO: Build a Bubble Chart using the sample data
 
