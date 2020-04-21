@@ -7,3 +7,4 @@ Interactive dashboard created using Plotly to explore the [Belly Button Biodiver
 * Bubble Chart displays each sample
 
 ![screenshot](screenshot.png)
+![screenshot](screenshot2.png)
